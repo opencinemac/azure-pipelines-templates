@@ -17,7 +17,7 @@ parameters:
   # Repo containing helper scripts.
   - name: scriptsRepo
     type: string
-    default: git@github.com:illuscio-dev/azure-pipelines-scripts.git
+    default: git@github.com:opencinemac/azure-pipelines-scripts.git
 
   # Python version to use for python tasks.
   - name: pythonVersion

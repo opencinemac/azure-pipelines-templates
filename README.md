@@ -8,8 +8,8 @@ each lib independently when changes to build process are made.
 
 # Supported Build Types
 
-1. Python package builds - single python version (python_package_main.ynl)
-2. Golang module builds (go_module_main.yml).
+1. Python package builds - single python version (python_package_main.yml)
+2. Golang module builds (go_module_main.yml)
 
 # Getting started
 
@@ -32,21 +32,15 @@ each lib independently when changes to build process are made.
 
 There are a few other repos related to these templates.
 
-- [azure-pipelines-scripts](https://github.com/illuscio-dev/azure-pipelines-scripts): 
+- [azure-pipelines-scripts](https://github.com/opencinemac/azure-pipelines-scripts): 
   Helper scripts for some pipeline steps. Can be forked or left as-is if no changes 
   are desired. If forked, the ``BUILD_SCRIPTS_REPO`` variable in ``variables.yml`` 
   should be changed to the fork.
 
-- [islelib-py](https://github.com/illuscio-dev/islelib-py): python package template 
+- [islelib-py](https://github.com/opencinemac/occlib-py): python package template 
   with all tooling configs preset.
-
-- [isleservice-py](https://github.com/illuscio-dev/isleservice-py): python service
-  template with  all tooling configs preset.
-  
-- [isleconsumer-py](https://github.com/illuscio-dev/isleservice-py): python consumer 
-  service template with  all tooling configs preset.
     
-- [islelib-go](https://github.com/illuscio-dev/islelib-go): golang module template with
+- [islelib-go](https://github.com/opencinemac/occlib-go): golang module template with
   all tooling configs preset.
 
 
@@ -93,21 +87,6 @@ The pipeline is run on any PR request made to ``dev`` by default. Build steps (s
 
 # Documentation Publication Options.
 
-**Push docs to S3 Bucket:**  Whenever a new commit is made to the ``master`` branch, 
-documentation is built as part of the pipeline and can be pushed to an `Amazon S3`_ 
-bucket for hosting. The documentation will be pushed to two locations:
-
-   * s3://{docs_bucket}/{repo_name}/latest
-   * s3://{docs_bucket}/{repo_name}/v{version}
-
-S3 can be configured to handle user authorization through `Cloudfront`_ and `Cognito`_
-using [this lambda edge template](https://console.aws.amazon.com/lambda/home?region=us-east-1#/create/app?applicationId=arn:aws:serverlessrepo:us-east-1:520945424137:applications/cloudfront-authorization-at-edge),
-following [this tutorial](https://aws.amazon.com/blogs/networking-and-content-delivery/authorizationedge-using-cookies-protect-your-amazon-cloudfront-content-from-being-downloaded-by-unauthenticated-users/)
-
-There are very few cross-platform affordable static website hosting services that allow
-easy identity protection for private docs, and have found that this solutions works
-well for us.
-
 **Publish to Github Pages:** Since docs are always copied and committed to /docs/ on the
 master branch, its easy to configure documentation publication through 
 [github pages](https://pages.github.com/). **NOTE: GITHUB PAGES WILL ALWAYS BE PUBLIC, 
@@ -142,14 +121,6 @@ them via [pipeline variables]. The following variables are required for these te
     - CONTAINER_REGISTRY_URL: URL for pushing  / pulling from container registry.
     - CONTAINER_REGISTRY_ID: ID to sign into container registry.
     - CONTAINER_REGISTRY_PASSWORD: Password to sign into container registry
-    
-- **AWS_DOCS_BUCKET_CREDENTIALS:** Used for uploading docs to S3 bucket.
-
-    - AWS_ACCESS_KEY_ID: Access key id for account to upload docs with.
-    - AWS_SECRET_ACCESS_KEY: Secret Access key for account to upload docs with.
-    - DOCS_S3_BUCKET: S3 bucket name to upload docs to.
-    - DOCS_CLOUDFORMATION_DISTRO_ID: Cloudfront distro to invalidate indexes for when
-        altering "latest" docs.
         
 NOTE: These groups will need to be added to every build pipeline individually. The 
 configuration pane to add groups to a pipeline is currently a little hard to find.
@@ -171,20 +142,20 @@ The following secure files are required for pipelines to function properly:
 To upload this file, look at the left hand pane and go to ``Pipelines -> Library -> 
 Secure files``. 
 
-
 # Python Packages Builds
 
 The template library for using this build pipelines can be 
-[found here](https://github.com/illuscio-dev/islelib-py). The following tools are used 
+[found here](https://github.com/opencinemac/occlib-py). The following tools are used 
 during python package builds:
 
 - **Root Template**: python_package_main.yml
 
 - **Dependency Installation:** Handled via [pip]. 
 
-- **Linters:** Linting is done via [Flake8](https://flake8.pycqa.org/en/latest/), 
-    [Black](https://github.com/psf/black), and [mypy](http://mypy-lang.org/) for 
-    static-type analysis.
+- **Linters:** Linting is done via 
+    - [Flake8](https://flake8.pycqa.org/en/latest/), 
+    - [Black](https://github.com/psf/black)
+    - [mypy](http://mypy-lang.org/) for static-type analysis.
     
 - **Tests:** Handled via [pytest](https://docs.pytest.org/en/latest/).
 
@@ -197,7 +168,7 @@ during python package builds:
 # Go Module Builds
 
 The template library for using this build pipelines can be 
-[found here](https://github.com/illuscio-dev/islelib-go). The following 
+[found here](https://github.com/opencinemac/occlib-go). The following 
 tools are used during python package builds:
 
 - **Root Template**: go_module_main.yml
@@ -206,7 +177,11 @@ tools are used during python package builds:
     [go get](https://golang.org/pkg/cmd/go/internal/get/). Git is configured to use ssh 
     instead of http to enable private package fetching. 
 
-- **Linters:** Linting is done via [Revive](https://github.com/mgechev/revive).
+- **Linters:** Linting is done via: 
+    - [Revive](https://github.com/mgechev/revive)
+    - [Go Vet](https://golang.org/cmd/vet/)
+    - [Go Lint](https://github.com/golang/lint)
+    - [Misspell](https://github.com/client9/misspell)
     
 - **Tests:** Handled via [go test](https://golang.org/pkg/testing/).
 
@@ -226,18 +201,3 @@ tools are used during python package builds:
 - **Image Builds:** Handled via docker commandline + dockerfile.
 
 - **Image Uploads:** Handled via docker commandline.
-
-
-# Python REST and consumer Service Builds:
-
-The template library for using this build pipelines can be 
-[found here for REST](https://github.com/illuscio-dev/isleservice-py) and 
-[here for Consumer](https://github.com/illuscio-dev/isleconsumer-py) services. The 
-following tools are used during python service builds:
-
-- **Root Template:** python_service_main.yml
-
-- **Dependencies, linting testing, and docs:** are identical to python package builds.
-
-- **Image Builds and Uploads:** Handled via docker commandline + dockerfile.
-
