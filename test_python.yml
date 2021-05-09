@@ -3,7 +3,7 @@ steps:
     displayName: 'Install python test dependencies'
 
   - script: |
-      pytest --doctest-modules --junitxml=reports/tests_junit.xml
+      pytest --junitxml=reports/tests_junit.xml
     displayName: 'pytest'
 
   - task: PythonScript@0
@@ -12,3 +12,11 @@ steps:
       scriptSource: filePath
       scriptPath: '$(BUILD_SCRIPTS_DIR)/python_check_coverage.py'
       failOnStderr: true
+
+  - task: PublishCodeCoverageResults@1
+    inputs:
+      codeCoverageTool: Cobertura
+      summaryFileLocation: $(System.DefaultWorkingDirectory)/**/coverage.xml
+      reportDirectory: $(System.DefaultWorkingDirectory)/**/coverage
+    condition: succeededOrFailed()
+    displayName: 'Publish coverage report'
