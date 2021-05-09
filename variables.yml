@@ -15,4 +15,4 @@ variables:
   BUILD_SCRIPTS_DIR: '$(Agent.TempDirectory)/build_scripts'
 
   # Repo to download python scrips from
-  BUILD_SCRIPTS_REPO: git@github.com:opencinemac/azure-pipelines-scripts.git
+  BUILD_SCRIPTS_REPO: https://github.com/opencinemac/azure-pipelines-scripts.git
