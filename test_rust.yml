@@ -2,7 +2,7 @@ steps:
 
   - script: |
       mkdir -p ./zdevelop/tests/_reports
-      cargo test -- -Z unstable-options --format json --report-time | tee ./zdevelop/test/_reports/results.json
+      cargo test -- -Z unstable-options --format json --report-time | tee ./zdevelop/tests/_reports/results.json
     displayName: cargo test
 
   - script: cat ./zdevelop/test/_reports/results.json | cargo2junit > ./reports/tests_junit.xml
@@ -13,7 +13,7 @@ steps:
 
   - script: |
       cargo tarpaulin -v
-      cat ./zdevelop/test/_reports/cobertura.xml > ./reports/coverage.xml
+      cat ./zdevelop/tests/_reports/cobertura.xml > ./reports/coverage.xml
     displayName: Run Code Coverage
 
   - task: PythonScript@0
