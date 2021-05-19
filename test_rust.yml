@@ -1,18 +1,12 @@
 steps:
 
-  - script: |
-      mkdir -p ./zdevelop/tests/_reports
-      mkdir -p ./reports
-      cargo test -- -Z unstable-options --format json --report-time | tee ./zdevelop/tests/_reports/results.json
-    displayName: cargo test
-
   - script: cargo install cargo-tarpaulin
     displayName: Install tarpaulin
 
   - script: |
-      cargo tarpaulin -v
+      cargo tarpaulin -v | tee ./zdevelop/tests/_reports/results.json
       cat ./zdevelop/tests/_reports/cobertura.xml > ./reports/coverage.xml
-    displayName: Run Code Coverage
+    displayName: Test with Code Coverage
 
   - script: cargo install cargo2junit
     displayName: install cargo2junit
