@@ -15,7 +15,7 @@ parameters:
   - name: goVersion
     type: string
 
-- steps:
+steps:
 
   # Setup python environment.
   - template: setup_python.yml
