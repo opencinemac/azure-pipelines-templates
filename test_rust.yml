@@ -4,6 +4,8 @@ steps:
     displayName: Install tarpaulin
 
   - script: |
+      mkdir -p ./zdevelop/tests/_reports
+      mkdir -p ./reports
       cargo tarpaulin -v | tee ./zdevelop/tests/_reports/results.json
       cat ./zdevelop/tests/_reports/cobertura.xml > ./reports/coverage.xml
     displayName: Test with Code Coverage
