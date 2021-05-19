@@ -14,6 +14,9 @@ steps:
       cat ./zdevelop/tests/_reports/cobertura.xml > ./reports/coverage.xml
     displayName: Run Code Coverage
 
+  - script: cargo install cargo2junit
+    displayName: install cargo2junit
+
   - script: cat ./zdevelop/tests/_reports/results.json | cargo2junit > ./reports/tests_junit.xml
     displayName: Convert to JUnit Reports
 
