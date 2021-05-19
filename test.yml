@@ -38,7 +38,7 @@ steps:
   - ${{ if eq( parameters.language, 'PYTHON') }}:
     - template: test_python.yml
 
-  - ${{ if eq( parameters.language, 'PYTHON') }}:
+  - ${{ if eq( parameters.language, 'RUST') }}:
       - template: test_rust.yml
 
   - task: PublishCodeCoverageResults@1
