@@ -2,6 +2,7 @@ steps:
 
   - script: |
       mkdir -p ./zdevelop/tests/_reports
+      mkdir -p ./reports
       cargo test -- -Z unstable-options --format json --report-time | tee ./zdevelop/tests/_reports/results.json
     displayName: cargo test
 
