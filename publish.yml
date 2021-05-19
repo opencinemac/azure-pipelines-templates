@@ -20,6 +20,10 @@ parameters:
   - name: publishToPypiOrg
     type: boolean
 
+  # Whether to publish rust package to crates.io.
+  - name: publishToCratesIO
+    type: boolean
+
 steps:
 
   # Freeze the list of packages this build was made with for reference.
@@ -40,6 +44,7 @@ steps:
         language: ${{ parameters.language }}
         pypiAzureArtifactFeed: ${{ parameters.pypiAzureArtifactFeed }}
         publishToPypiOrg: ${{ parameters.publishToPypiOrg }}
+        publishToCratesIO: ${{ parameters.publishToCratesIO }}
 
   - ${{ if eq( parameters.buildType, 'SERVICE')}}:
 

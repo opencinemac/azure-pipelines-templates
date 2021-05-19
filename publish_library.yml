@@ -11,15 +11,25 @@ parameters:
   - name: publishToPypiOrg
     type: boolean
 
+  # Publish to the public pypi.org
+  - name: publishToPypiOrg
+    type: boolean
+
+  # Whether to publish rust package to crates.io.
+  - name: publishToCratesIO
+    type: boolean
+
 steps:
   # Publish libraries
   # Setup build tools / dependencies.
   - ${{ if eq( parameters.language, 'PYTHON') }}:
-      - template: publish_setup_python_library.yml
-
-  # If this is a python library we need to release to pypi
-  - ${{ if eq( parameters.language, 'PYTHON') }}:
-      - template: publish_python_library.yml
+      - template: publish_library_python_setup.yml
+      - template: publish_library_python.yml
         parameters:
           pypiAzureArtifactFeed: ${{ parameters.pypiAzureArtifactFeed }}
           publishToPypiOrg: ${{ parameters.publishToPypiOrg }}
+
+  - ${{ if eq( parameters.language, 'RUST') }}:
+      - template: publish_library_rust.yml
+        parameters:
+          publishToCratesIO: ${{ parameters.publishToCratesIO }}

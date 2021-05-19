@@ -1,0 +1,14 @@
+# Whether to publish rust package to crates.io.
+- name: publishToCratesIO
+  type: boolean
+
+steps:
+
+  - ${{ if parameters.publishToCratesIO }}:
+    - script: cargo login $(TOKEN)
+      env:
+        TOKEN: $(CRATES_IO_TOKEN)
+      displayName: Cargo Login
+
+    - script: cargo publsih
+      displayName: Cargo Publish
