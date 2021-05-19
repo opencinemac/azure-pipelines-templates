@@ -11,3 +11,6 @@ steps:
 
   - ${{ if eq(parameters.language, 'PYTHON') }}:
     - template: lint_python.yml
+
+  - ${{ if eq(parameters.language, 'RUST') }}:
+      - template: lint_rust.yml

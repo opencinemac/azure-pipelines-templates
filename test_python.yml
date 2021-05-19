@@ -12,11 +12,3 @@ steps:
       scriptSource: filePath
       scriptPath: '$(BUILD_SCRIPTS_DIR)/python_check_coverage.py'
       failOnStderr: true
-
-  - task: PublishCodeCoverageResults@1
-    inputs:
-      codeCoverageTool: Cobertura
-      summaryFileLocation: $(System.DefaultWorkingDirectory)/**/coverage.xml
-      reportDirectory: $(System.DefaultWorkingDirectory)/**/coverage
-    condition: succeededOrFailed()
-    displayName: 'Publish coverage report'

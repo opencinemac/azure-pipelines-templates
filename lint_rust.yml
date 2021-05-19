@@ -1,0 +1,17 @@
+steps:
+
+  # Install clippy.
+  - script: rustup component add clippy
+    displayName: Install clippy
+
+  # Lint rust using clippy.
+  - script: cargo clippy
+    displayName: 'clippy'
+
+  # Install rustfmt
+  - script: rustup component add rustfmt
+      displayName: Install Rustfmt
+
+  # Lint rust using rustfmt
+  - script: rustfmt ./src/*.rs --check
+    displayName: rustfmt check

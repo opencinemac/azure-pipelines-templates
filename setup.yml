@@ -1,0 +1,33 @@
+parameters:
+  # What the primary language of this build is. Choices are GO | PYTHON | DOCKER.
+  - name: language
+    type: string
+
+  # Artifact feed to pull custom packages from (pass blank if not using).
+  - name: pypiAzureArtifactFeed
+    type: string
+
+  # Python version to use for python tasks.
+  - name: pythonVersion
+    type: string
+
+  # Link to go compiler to use.
+  - name: goVersion
+    type: string
+
+# Setup python environment.
+- template: setup_python.yml
+  parameters:
+    pythonVersion: ${{ parameters.pythonVersion }}
+    pypiAzureArtifactFeed: ${{ parameters.pypiAzureArtifactFeed }}
+
+# Setup go environment. We need this for building protoc docs, so we'll just do it
+# for every build (for the time being).
+- ${{ if or( parameters.docProtoc, eq( parameters.language, 'GO' )) }}:
+    - template: setup_go.yml
+      parameters:
+        language: ${{ parameters.language }}
+        goVersion: ${{ parameters.goVersion }}
+
+- ${{ if eq( parameters.language, 'RUST' ) }}:
+    - template: setup_rust.yml

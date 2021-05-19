@@ -38,7 +38,19 @@ steps:
   - ${{ if eq( parameters.language, 'PYTHON') }}:
     - template: test_python.yml
 
+  - ${{ if eq( parameters.language, 'PYTHON') }}:
+      - template: test_rust.yml
+
+  - task: PublishCodeCoverageResults@1
+    inputs:
+      codeCoverageTool: Cobertura
+      summaryFileLocation: $(System.DefaultWorkingDirectory)/**/coverage.xml
+      reportDirectory: $(System.DefaultWorkingDirectory)/**/coverage
+    condition: succeededOrFailed()
+    displayName: Publish Coverage Report
+
   - task: PublishTestResults@2
+    displayName: Publish Test Results
     condition: succeededOrFailed()
     inputs:
       testRunner: JUnit

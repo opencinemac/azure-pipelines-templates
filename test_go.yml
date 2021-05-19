@@ -24,12 +24,3 @@ steps:
       gocov-xml < ./zdevelop/tests/_reports/coverage.json > ./reports/coverage.xml
     condition: succeededOrFailed()
     displayName: 'Convert coverage report to junit'
-
-
-  - task: PublishCodeCoverageResults@1
-    inputs:
-      codeCoverageTool: Cobertura
-      summaryFileLocation: $(System.DefaultWorkingDirectory)/**/coverage.xml
-      reportDirectory:  $(System.DefaultWorkingDirectory)/**/coverage
-    condition: succeededOrFailed()
-    displayName: 'Publish coverage report'

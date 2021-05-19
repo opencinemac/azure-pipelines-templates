@@ -74,6 +74,11 @@ parameters:
     type: boolean
     default: false
 
+  # Whether to publish rust package to crates.io.
+  - name: publishToCratesIO
+    type: boolean
+    default: false
+
   # Whether to publish python package to pypi.org.
   - name: timeoutInMinutes
     type: number
@@ -100,19 +105,13 @@ jobs:
       # Download python helper scripts
       - template: scripts_download.yml
 
-      # Setup python environment.
-      - template: setup_python.yml
+      - template: setup.yml
         parameters:
-          pythonVersion: ${{ parameters.pythonVersion }}
+          language: ${{ parameters.language }}
           pypiAzureArtifactFeed: ${{ parameters.pypiAzureArtifactFeed }}
+          pythonVersion: ${{ parameters.pythonVersion }}
+          goVersion: ${{ parameters.goVersion }}
 
-      # Setup go environment. We need this for building protoc docs, so we'll just do it
-      # for every build (for the time being).
-      - ${{ if or( parameters.docProtoc, eq( parameters.language, 'GO' )) }}:
-        - template: setup_go.yml
-          parameters:
-            language: ${{ parameters.language }}
-            goVersion: ${{ parameters.goVersion }}
 
       # Get Repo Name.
       - script: python3 $(BUILD_SCRIPTS_DIR)/get_repo_name.py
