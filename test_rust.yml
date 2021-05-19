@@ -7,7 +7,7 @@ steps:
     displayName: Convert to JUnit Reports
 
   - script: cargo install cargo-tarpaulin
-    displayName: install tarpaulin
+    displayName: Install tarpaulin
 
   - script: |
       cargo tarpaulin -v
