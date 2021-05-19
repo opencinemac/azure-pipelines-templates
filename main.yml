@@ -166,3 +166,4 @@ jobs:
             releaseBranchName: ${{ parameters.releaseBranchName }}
             pypiAzureArtifactFeed: ${{ parameters.pypiAzureArtifactFeed }}
             publishToPypiOrg: ${{ parameters.publishToPypiOrg }}
+            publishToCratesIO: ${{ parameters.publishToCratesIO }}
