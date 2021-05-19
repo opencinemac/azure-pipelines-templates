@@ -11,10 +11,6 @@ parameters:
   - name: publishToPypiOrg
     type: boolean
 
-  # Publish to the public pypi.org
-  - name: publishToPypiOrg
-    type: boolean
-
   # Whether to publish rust package to crates.io.
   - name: publishToCratesIO
     type: boolean
