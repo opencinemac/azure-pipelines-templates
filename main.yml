@@ -144,7 +144,7 @@ jobs:
             python3 $(BUILD_SCRIPTS_DIR)/get_release_version.py
           displayName: 'get release version'
           env:
-            PublishLanguage: "GO"
+            PublishLanguage: ${{ parameters.language }}
 
         - script: |
             echo 'Version: $(RELEASE_VERSION)'
