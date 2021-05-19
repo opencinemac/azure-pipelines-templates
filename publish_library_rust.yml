@@ -9,5 +9,5 @@ steps:
     - script: cargo login $(CRATES_IO_TOKEN)
       displayName: Cargo Login
 
-    - script: cargo publsih
+    - script: cargo publish
       displayName: Cargo Publish
