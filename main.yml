@@ -135,12 +135,11 @@ jobs:
       # Building docs and publishing only need be done on dev branch builds, which are
       # candidates for release.
       - ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/dev') }}:
-        - script: pip install packaging
-          displayName: 'install version script dependencies'
+        - script: pip install packaging toml
+          displayName: install version script dependencies
 
         # Get the release version. We need toml for rust releases
         - script: |
-            pip install toml
             python3 $(BUILD_SCRIPTS_DIR)/get_release_version.py
           displayName: 'get release version'
           env:
