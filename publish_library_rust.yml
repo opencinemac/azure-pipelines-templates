@@ -1,6 +1,7 @@
-# Whether to publish rust package to crates.io.
-- name: publishToCratesIO
-  type: boolean
+parameters:
+  # Whether to publish rust package to crates.io.
+  - name: publishToCratesIO
+    type: boolean
 
 steps:
 
