@@ -1,18 +1,18 @@
 steps:
 
   - script: cargo test -- -Z unstable-options --format json --report-time | tee ./zdevelop/test/_reports/results.json
-    description: cargo test
+    displayName: cargo test
 
   - script: cat ./zdevelop/test/_reports/results.json | cargo2junit > ./reports/tests_junit.xml
-    description: Convert to JUnit Reports
+    displayName: Convert to JUnit Reports
 
   - script: cargo install cargo-tarpaulin
-    description: install tarpaulin
+    displayName: install tarpaulin
 
   - script: |
       cargo tarpaulin -v
       cat ./zdevelop/test/_reports/cobertura.xml > ./reports/coverage.xml
-    description: Run Code Coverage
+    displayName: Run Code Coverage
 
   - task: PythonScript@0
     displayName: Check Coverage
