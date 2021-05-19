@@ -24,5 +24,5 @@ steps:
     displayName: Check Coverage
     inputs:
       scriptSource: filePath
-      scriptPath: '$(BUILD_SCRIPTS_DIR)/python_check_coverage.py'
+      scriptPath: '$(BUILD_SCRIPTS_DIR)/rust_check_coverage.py'
       failOnStderr: true
