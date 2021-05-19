@@ -138,8 +138,10 @@ jobs:
         - script: pip install packaging
           displayName: 'install version script dependencies'
 
-        # Get the release version.
-        - script: python3 $(BUILD_SCRIPTS_DIR)/get_release_version.py
+        # Get the release version. We need toml for rust releases
+        - script: |
+            pip install toml
+            python3 $(BUILD_SCRIPTS_DIR)/get_release_version.py
           displayName: 'get release version'
           env:
             PublishLanguage: "GO"
