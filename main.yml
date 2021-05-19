@@ -118,19 +118,19 @@ jobs:
       - script: python3 $(BUILD_SCRIPTS_DIR)/get_repo_name.py
         displayName: 'Get repo name'
 
-#      # Run lint.
-#      - template: lint.yml
-#        parameters:
-#          language: ${{parameters.language}}
-#
-#      # Run tests.
-#      - ${{ if parameters.runTests }}:
-#        - template: test.yml
-#          parameters:
-#            language: ${{ parameters.language }}
-#            testMongo: ${{ parameters.testMongo }}
-#            testRabbit: ${{ parameters.testRabbit }}
-#            testRedis: ${{ parameters.testRedis }}
+      # Run lint.
+      - template: lint.yml
+        parameters:
+          language: ${{parameters.language}}
+
+      # Run tests.
+      - ${{ if parameters.runTests }}:
+        - template: test.yml
+          parameters:
+            language: ${{ parameters.language }}
+            testMongo: ${{ parameters.testMongo }}
+            testRabbit: ${{ parameters.testRabbit }}
+            testRedis: ${{ parameters.testRedis }}
 
       # Building docs and publishing only need be done on dev branch builds, which are
       # candidates for release.
