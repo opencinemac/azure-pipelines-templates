@@ -10,7 +10,7 @@ steps:
 
   # Install rustfmt
   - script: rustup component add rustfmt
-      displayName: Install Rustfmt
+    displayName: Install Rustfmt
 
   # Lint rust using rustfmt
   - script: rustfmt ./src/*.rs --check
