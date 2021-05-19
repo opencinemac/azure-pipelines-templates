@@ -15,6 +15,10 @@ parameters:
   - name: goVersion
     type: string
 
+  # Whether to generate protobuff docs
+  - name: docProtoc
+    type: boolean
+
 steps:
 
   # Setup python environment.

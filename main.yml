@@ -111,6 +111,7 @@ jobs:
           pypiAzureArtifactFeed: ${{ parameters.pypiAzureArtifactFeed }}
           pythonVersion: ${{ parameters.pythonVersion }}
           goVersion: ${{ parameters.goVersion }}
+          docProtoc: ${{ parameters.docProtoc }}
 
 
       # Get Repo Name.
