@@ -37,10 +37,13 @@ There are a few other repos related to these templates.
   are desired. If forked, the ``BUILD_SCRIPTS_REPO`` variable in ``variables.yml`` 
   should be changed to the fork.
 
-- [islelib-py](https://github.com/opencinemac/occlib-py): python package template 
+- [occlib-py](https://github.com/opencinemac/occlib-py): Python package template 
   with all tooling configs preset.
     
-- [islelib-go](https://github.com/opencinemac/occlib-go): golang module template with
+- [occlib-go](https://github.com/opencinemac/occlib-go): Golang module template with
+  all tooling configs preset.
+
+- [occlib-rs](https://github.com/opencinemac/occlib-rs): Rust module template with
   all tooling configs preset.
 
 
@@ -99,24 +102,21 @@ These templates rely on access to logins or credentials for other services, and 
 them via [pipeline variables]. The following variables are required for these templates
 (depending on the type of build.) They are broken into suggested groups.
 
-- **GIT_CREDENTIALS:** Used for adding tags and updating master.
+- **GIT SETTINGS:** Used for adding tags and updating master.
 
-    - GIT_SSH_PUBLIC_KEY: Public key for git ssh access.
-    - GIT_SSH_PASSPHRASE: Passphrase for ssh key.
-    - GIT_KNOWN_HOSTS_ENTRY: Known hosts entry created with public and private keys.
     - GIT_USERNAME: User to use with git commits.
-    - GIT_EMAIL: Email to use with git commits. 
+    - GIT_EMAIL: Email to use with git commits.
     
-    For more information on how to create ssh keys, [see here](https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh). 
-    For more information on how these values are installed in a pipeline, 
-    [see here](https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/install-ssh-key?view=azure-devops).
-    
-- **OPEN_SOURCE_TWINE_CREDENTIALS:** Used for uploading public packages to pypi.org
+- **TWINE CREDENTIALS:** Used for uploading public packages to pypi.org
     
     - PYPIORG_USER: username for pypi.org
     - PYPIORG_PASSWORD: password for pypi.org.
     
-- **CONTAINER_REGISTRY_CREDENTIALS:** Used for uploading service images.
+- **Crates.io Credentials** Used for uploading Rust creates to crates.io
+
+    - CRATES_IO_TOKEN: the API token for your organization's crates.io account
+    
+- **CONTAINER REGISTRY CREDENTIALS:** Used for uploading service images.
 
     - CONTAINER_REGISTRY_URL: URL for pushing  / pulling from container registry.
     - CONTAINER_REGISTRY_ID: ID to sign into container registry.
@@ -132,23 +132,11 @@ Variable Groups -> Link variable group`` to give a pipeline access to a variable
 To make a new group, look at the left hand pane and go to ``Pipelines -> Library -> 
 Variable groups``.
 
-
-# Azure Pipelines Secure Files
-
-The following secure files are required for pipelines to function properly:
-
-- git_ssh_key.private: SSH private key for accessing git.
-
-To upload this file, look at the left hand pane and go to ``Pipelines -> Library -> 
-Secure files``. 
-
 # Python Packages Builds
 
 The template library for using this build pipelines can be 
 [found here](https://github.com/opencinemac/occlib-py). The following tools are used 
 during python package builds:
-
-- **Root Template**: python_package_main.yml
 
 - **Dependency Installation:** Handled via [pip]. 
 
@@ -171,8 +159,6 @@ The template library for using this build pipelines can be
 [found here](https://github.com/opencinemac/occlib-go). The following 
 tools are used during python package builds:
 
-- **Root Template**: go_module_main.yml
-
 - **Dependency Installation:** Handled via 
     [go get](https://golang.org/pkg/cmd/go/internal/get/). Git is configured to use ssh 
     instead of http to enable private package fetching. 
@@ -193,6 +179,26 @@ tools are used during python package builds:
 
 - **Package Uploads:** Handled via merge into master and version tag.
 
+# Rust Crate Builds
+
+The template library for using this build pipelines can be
+[found here](https://github.com/opencinemac/occlib-rs). The following tools are used
+during python package builds:
+
+- **Dependency Installation:** Handled via [cargo](https://doc.rust-lang.org/cargo/guide/).
+
+- **Linters:** Linting is done via
+    - [rustfmt](https://github.com/rust-lang/rustfmt),
+    - [clippy](https://github.com/rust-lang/rust-clippy)
+    - [Misspell](https://github.com/client9/misspell)
+
+- **Tests:** Handled via [cargo test](https://doc.rust-lang.org/cargo/commands/cargo-test.html).
+
+- **Docs:** Handled via [cargo doc](https://doc.rust-lang.org/cargo/commands/cargo-doc.html).
+
+- **Builds:** Handled via [cargo](https://doc.rust-lang.org/cargo/guide/).
+
+- **Package Uploads:** Handled via [cargo publish](https://doc.rust-lang.org/cargo/reference/publishing.html).
 
 # Docker Image Builds:
 
