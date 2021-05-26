@@ -8,8 +8,9 @@ each lib independently when changes to build process are made.
 
 # Supported Build Types
 
-1. Python package builds - single python version (python_package_main.yml)
-2. Golang module builds (go_module_main.yml)
+1. Python package builds - single python version
+2. Golang module builds
+3. Rust crate builds
 
 # Getting started
 
