@@ -8,8 +8,8 @@ steps:
     displayName: Run Tests With Coverage
 
   - script: |
-      find ./_build/test -type f  -name "test-junit-report.xml" -exec cp '{}' "./zdevelop/tests/_reports" \;
-      cp "./zdevelop/tests/_reports/test-junit-report.xml" "./reports"
+      find ./_build/test -type f  -name "test-junit-report.xml" -exec cp '{}' "./zdevelop/tests/_reports/tests_junit.xml" \;
+      cp "./zdevelop/tests/_reports/tests_junit.xml" "./reports"
     displayName: Copy JUnit Report
 
   - script: |
