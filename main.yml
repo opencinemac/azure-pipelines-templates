@@ -1,6 +1,6 @@
 # PIPELINE CONFIGURATION
 parameters:
-  # What the primary language of this build is. Choices are GO | PYTHON | DOCKER.
+  # What the primary language of this build is. Choices are GO | PYTHON | RUST | ELIXIR.
   - name: language
     type: string
 

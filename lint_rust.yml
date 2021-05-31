@@ -1,6 +1,6 @@
 steps:
 
-  # Install clippy.
+  # Install clippy and Misspell.
   - script: |
       rustup component add clippy
       go install github.com/client9/misspell/cmd/misspell@latest
@@ -18,5 +18,5 @@ steps:
   - script: rustfmt ./src/*.rs --check
     displayName: rustfmt check
 
-  - script: find . -type f | grep -e \.rs| grep -v /target | xargs misspell -error
+  - script: find . -type f | grep -e \.rs | grep -v /target | xargs misspell -error
     displayName: misspell

@@ -36,3 +36,6 @@ steps:
 
   - ${{ if eq( parameters.language, 'RUST' ) }}:
       - template: setup_rust.yml
+
+  - ${{ if eq( parameters.language, 'ELIXIR' ) }}:
+      - template: setup_elixir.yml

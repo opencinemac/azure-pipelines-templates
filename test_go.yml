@@ -3,24 +3,24 @@ steps:
       go install github.com/jstemmer/go-junit-report@latest
       go install github.com/AlekSi/gocov-xml@latest
       go install github.com/axw/gocov/gocov@latest
-    displayName: 'Go install test tools'
+    displayName: Go install test tools
     workingDirectory: $(Agent.BuildDirectory)
 
   - script: |
       mkdir -p ./zdevelop/tests
       mkdir -p ./zdevelop/tests/_reports
       python3 ./zdevelop/make_scripts/go_make_test.py
-    displayName: 'Run tests'
+    displayName: Run Tests
 
   - script: |
       mkdir -p ./reports
       cat ./zdevelop/tests/_reports/test_full.txt \
         | go-junit-report > ./reports/tests_junit.xml
     condition: succeededOrFailed()
-    displayName: 'Convert test report to junit'
+    displayName: Convert test report to junit
 
   - script: |
       gocov convert ./zdevelop/tests/_reports/coverage.out > ./zdevelop/tests/_reports/coverage.json
       gocov-xml < ./zdevelop/tests/_reports/coverage.json > ./reports/coverage.xml
     condition: succeededOrFailed()
-    displayName: 'Convert coverage report to junit'
+    displayName: Convert coverage report to junit

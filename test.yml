@@ -41,6 +41,9 @@ steps:
   - ${{ if eq( parameters.language, 'RUST') }}:
       - template: test_rust.yml
 
+  - ${{ if eq( parameters.language, 'ELIXIR') }}:
+      - template: test_elixir.yml
+
   - task: PublishCodeCoverageResults@1
     inputs:
       codeCoverageTool: Cobertura

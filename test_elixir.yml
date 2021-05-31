@@ -1,0 +1,7 @@
+steps:
+
+  - script: |
+      mkdir -p ./zdevelop/tests
+      mkdir -p ./zdevelop/tests/_reports
+      mix test --cover
+    displayName: Run Tests

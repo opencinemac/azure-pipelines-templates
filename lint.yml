@@ -1,4 +1,4 @@
-# What the primary language of this build is. Choices are GO | PYTHON | DOCKER
+# What the primary language of this build is. Choices are GO | PYTHON | RUST | ELIXIR
 parameters:
 
   - name: language
@@ -13,4 +13,7 @@ steps:
     - template: lint_python.yml
 
   - ${{ if eq(parameters.language, 'RUST') }}:
+      - template: lint_rust.yml
+
+  - ${{ if eq(parameters.language, 'ELIXIR') }}:
       - template: lint_rust.yml
