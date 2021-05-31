@@ -1,0 +1,13 @@
+parameters:
+  # Whether to publish rust package to hex.pn.
+  - name: publishToHexPM
+    type: boolean
+
+
+steps:
+
+  - ${{ if parameters.publishToHexPM }}:
+      - script: mix hex.publish --no-confirm
+        displayName: Publish To Hex
+        env:
+          HEX_API_KEY: $(HEX_API_KEY)

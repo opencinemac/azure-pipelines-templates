@@ -79,6 +79,11 @@ parameters:
     type: boolean
     default: false
 
+  # Whether to publish rust package to hex.pn.
+  - name: publishToHexPM
+    type: boolean
+    default: false
+
   # Whether to publish python package to pypi.org.
   - name: timeoutInMinutes
     type: number
@@ -166,3 +171,4 @@ jobs:
             pypiAzureArtifactFeed: ${{ parameters.pypiAzureArtifactFeed }}
             publishToPypiOrg: ${{ parameters.publishToPypiOrg }}
             publishToCratesIO: ${{ parameters.publishToCratesIO }}
+            publishToHexPM: ${{ parameters.publishToHexPM }}

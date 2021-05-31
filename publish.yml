@@ -24,6 +24,10 @@ parameters:
   - name: publishToCratesIO
     type: boolean
 
+  # Whether to publish rust package to hex.pn.
+  - name: publishToHexPM
+    type: boolean
+
 steps:
 
   # Freeze the list of packages this build was made with for reference.
@@ -45,6 +49,7 @@ steps:
         pypiAzureArtifactFeed: ${{ parameters.pypiAzureArtifactFeed }}
         publishToPypiOrg: ${{ parameters.publishToPypiOrg }}
         publishToCratesIO: ${{ parameters.publishToCratesIO }}
+        publishToHexPM: ${{ parameters.publishToHexPM }}
 
   - ${{ if eq( parameters.buildType, 'SERVICE')}}:
 
