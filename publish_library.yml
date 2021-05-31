@@ -35,6 +35,6 @@ steps:
           publishToCratesIO: ${{ parameters.publishToCratesIO }}
 
   - ${{ if eq( parameters.language, 'ELIXIR') }}:
-      - template: publish_library_rust.yml
+      - template: publish_library_elixir.yml
         parameters:
           publishToHexPM: ${{ parameters.publishToHexPM }}
