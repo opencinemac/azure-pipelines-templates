@@ -16,4 +16,4 @@ steps:
       - template: lint_rust.yml
 
   - ${{ if eq(parameters.language, 'ELIXIR') }}:
-      - template: lint_rust.yml
+      - template: lint_elixir.yml
