@@ -14,5 +14,5 @@ steps:
 
   - script: |
       mv "coverage.xml" "./zdevelop/tests/_reports/coverage.xml"
-      cp "cover/excoveralls.xml" "./reports/coverage.xml"
+      cp "./zdevelop/tests/_reports/coverage.xml" "./reports/coverage.xml"
     displayName: Copy Coverage Report
