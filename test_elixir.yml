@@ -3,10 +3,13 @@ steps:
   - script: |
       mkdir -p ./zdevelop/tests
       mkdir -p ./zdevelop/tests/_reports
+      mkdir -p ./reports
       mix coveralls.xml
     displayName: Run Tests With Coverage
 
-  - script: find ./_build/test -type f  -name "test-junit-report.xml" -exec cp '{}' "./zdevelop/tests/_reports" \;
+  - script: |
+      find ./_build/test -type f  -name "test-junit-report.xml" -exec cp '{}' "./zdevelop/tests/_reports" \;
+      cp "./zdevelop/tests/_reports/test-junit-report.xml" "./zdevelop/tests/_reports"
     displayName: Copy JUnit Report
 
   - script: |
