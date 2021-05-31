@@ -6,8 +6,8 @@ steps:
   - script: mix format --check-formatted
     displayName: mix format check
 
-  - script: mix dialyzer
-    displayName: Static Type Analysis
+#  - script: mix dialyzer
+#    displayName: Static Type Analysis
 
   - script: find . -type f | grep -e "\.ex$" -e "\.exs$" | grep -v zdevelop/ | grep -v _build | grep -v deps | xargs misspell -error
     displayName: Misspell
