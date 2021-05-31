@@ -13,6 +13,6 @@ steps:
     displayName: Copy JUnit Report
 
   - script: |
-      cp "cover/excoveralls.xml" "./zdevelop/tests/_reports/coverage.xml"
+      mv "coverage.xml" "./zdevelop/tests/_reports/coverage.xml"
       cp "cover/excoveralls.xml" "./reports/coverage.xml"
     displayName: Copy Coverage Report
