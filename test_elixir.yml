@@ -4,7 +4,7 @@ steps:
       mkdir -p ./zdevelop/tests
       mkdir -p ./zdevelop/tests/_reports
       mkdir -p ./reports
-      mix coveralls.xml
+      mix coveralls.xml --warnings-as-errors
     displayName: Run Tests With Coverage
 
   - script: |
