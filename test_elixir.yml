@@ -9,7 +9,7 @@ steps:
 
   - script: |
       find ./_build/test -type f  -name "test-junit-report.xml" -exec cp '{}' "./zdevelop/tests/_reports" \;
-      cp "./zdevelop/tests/_reports/test-junit-report.xml" "./zdevelop/tests/_reports"
+      cp "./zdevelop/tests/_reports/test-junit-report.xml" "./reports"
     displayName: Copy JUnit Report
 
   - script: |
