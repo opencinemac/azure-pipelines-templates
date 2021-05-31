@@ -7,6 +7,9 @@ steps:
       sudo apt-get install elixir
     displayName: Install Elixir
 
+  - script: mix local.hex --force
+    displayName: Install Hex
+
   - script: |
       mix deps.get
     displayName: Install Dependencies
