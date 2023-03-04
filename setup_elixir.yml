@@ -1,10 +1,10 @@
 steps:
 
   - script: |
-      wget https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb && sudo dpkg -i erlang-solutions_2.0_all.deb
-      sudo apt-get update
-      sudo apt-get install esl-erlang
-      sudo apt-get install elixir
+      git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.2
+      echo '. \"$HOME/.asdf/asdf.sh\"' >> ~/.bashrc
+      . "$HOME/.asdf/asdf.sh"
+      asdf install
     displayName: Install Elixir
 
   - script: mix local.hex --force
