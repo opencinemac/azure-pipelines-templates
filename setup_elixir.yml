@@ -4,8 +4,12 @@ steps:
       git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.2
       echo '. \"$HOME/.asdf/asdf.sh\"' >> ~/.bashrc
       . "$HOME/.asdf/asdf.sh"
-      asdf install
-    displayName: Install Elixir
+      asdf plugin add erlang
+      asdf plugin add elixir
+    displayName: Install asdf
+
+  - script: asdf install
+    displayName: Install Erlang & Elixir
 
   - script: mix local.hex --force
     displayName: Install Hex
