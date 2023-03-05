@@ -1,7 +1,7 @@
 steps:
   - script: |
       go install github.com/client9/misspell/cmd/misspell@latest
-    displayName: Install Lint tools
+    displayName: Install lint tools
 
   - script: |
       source "$HOME/.asdf/asdf.sh"
@@ -16,7 +16,7 @@ steps:
   - script: | 
       source "$HOME/.asdf/asdf.sh"
       mix dialyzer
-    displayName: Static Type Analysis
+    displayName: Dialyzer
 
   - script: find . -type f | grep -e "\.ex$" -e "\.exs$" | grep -v zdevelop/ | grep -v _build | grep -v deps | xargs misspell -error
     displayName: Misspell
