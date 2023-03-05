@@ -1,7 +1,7 @@
 steps:
 
   - script: pip install --no-cache-dir -e .[lint]
-    displayName: 'Install python lint dependencies'
+    displayName: Install Python lint dependencies
 
   # Lint python using black, flake8 and mypy
   - script: |
