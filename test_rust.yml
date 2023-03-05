@@ -8,16 +8,16 @@ steps:
       mkdir -p ./reports
       cargo tarpaulin -v | tee ./zdevelop/tests/_reports/results.json
       cat ./zdevelop/tests/_reports/cobertura.xml > ./reports/coverage.xml
-    displayName: Test with Code Coverage
+    displayName: Run tests
 
   - script: cargo install cargo2junit
-    displayName: install cargo2junit
+    displayName: Install cargo2junit
 
   - script: cat ./zdevelop/tests/_reports/results.json | cargo2junit > ./reports/tests_junit.xml
-    displayName: Convert to JUnit Reports
+    displayName: Convert to JUnit reports
 
   - task: PythonScript@0
-    displayName: Check Coverage
+    displayName: Check coverage
     inputs:
       scriptSource: filePath
       scriptPath: '$(BUILD_SCRIPTS_DIR)/rust_check_coverage.py'

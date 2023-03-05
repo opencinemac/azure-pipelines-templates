@@ -7,7 +7,7 @@ steps:
 
   - ${{ if parameters.publishToCratesIO }}:
     - script: cargo login $(CRATES_IO_TOKEN)
-      displayName: Cargo Login
+      displayName: Cargo login
 
     - script: cargo publish
-      displayName: Cargo Publish
+      displayName: Cargo publish

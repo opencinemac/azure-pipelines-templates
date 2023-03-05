@@ -32,7 +32,7 @@ steps:
 
   # Freeze the list of packages this build was made with for reference.
   - script: pip freeze > pip-freeze.txt
-    displayName: 'Freeze python package list'
+    displayName: Freeze Python package list
 
   # Merge build to the release branch and tag as release version (this is how go
   # modules are published). We are going to do it for every type of release, so we

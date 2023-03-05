@@ -7,7 +7,7 @@ steps:
     displayName: 'pytest'
 
   - task: PythonScript@0
-    displayName: 'check coverage'
+    displayName: Check coverage
     inputs:
       scriptSource: filePath
       scriptPath: '$(BUILD_SCRIPTS_DIR)/python_check_coverage.py'

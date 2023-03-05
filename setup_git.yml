@@ -4,4 +4,4 @@ steps:
 - script: |
     git config --global user.email "$(GIT_EMAIL)"
     git config --global user.name "$(GIT_USERNAME)"
-  displayName: 'Setting up git config.'
+  displayName: Set up git config

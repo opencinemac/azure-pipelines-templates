@@ -13,4 +13,4 @@ steps:
       PIP_INDEX_URL: $(PIP_INDEX_URL)
       PIP_EXTRA_INDEX_URL: $(PIP_EXTRA_INDEX_URL)
       DOCKER_BUILDKIT: 1
-    displayName: 'Building Docker Image'
+    displayName: Build Docker image

@@ -10,7 +10,7 @@ steps:
     displayName: Get Service Name
 
   - script: docker -v
-    displayName: Printing docker version info
+    displayName: Print docker version info
 
   # Log in to docker.
   - script: docker login $REGISTRY_URL -u $DOCKER_ID -p $DOCKER_PASSWORD
@@ -18,7 +18,7 @@ steps:
       DOCKER_ID: $(CONTAINER_REGISTRY_ID)
       DOCKER_PASSWORD: $(CONTAINER_REGISTRY_PASSWORD)
       REGISTRY_URL: $(CONTAINER_REGISTRY_URL)
-    displayName: "Logging into DockerHub"
+    displayName: Log into DockerHub
 
   - ${{ if eq( parameters.language, 'PYTHON') }}:
     - template: publish_service_build_python.yml
@@ -28,6 +28,6 @@ steps:
 
   # Push docker image.
   - script: docker push $REGISTRY_NAME/$SERVICE_NAME
-    displayName: 'Upload Image'
+    displayName: Upload image
     env:
       REGISTRY_NAME: $(CONTAINER_REGISTRY_NAME)

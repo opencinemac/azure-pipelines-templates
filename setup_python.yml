@@ -23,12 +23,12 @@ steps:
       architecture: 'x64'
 
   - script: which python
-    displayName: 'Debug python location'
+    displayName: Print Python location
 
   # Setup access to artifact feed.
   - ${{ if ne(parameters.pypiAzureArtifactFeed, '-') }}:
     - task: PipAuthenticate@1
-      displayName: 'Pip Authenticate'
+      displayName: Pip authenticate
       inputs:
         # Provide list of feed names which you want to authenticate
         artifactFeeds: ${{ parameters.pypiAzureArtifactFeed }}
@@ -38,11 +38,11 @@ steps:
   - script: |
       python -m pip install --upgrade pip
       pip install --upgrade setuptools
-    displayName: 'Upgrade pip and setuptools'
+    displayName: Upgrade pip and setuptools
 
   - ${{ if parameters.installLocalPackage }}:
     - script: pip install --no-cache-dir -e .
-      displayName: 'Install python dependencies'
+      displayName: Install Python dependencies
 
   - script: pip uninstall -y typing
-    displayName: 'Uninstall third-party typing'
+    displayName: Uninstall third-party typing

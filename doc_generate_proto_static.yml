@@ -7,17 +7,17 @@ steps:
       sudo unzip -o $PROTOC_ZIP -d /usr/local bin/protoc
       sudo unzip -o $PROTOC_ZIP -d /usr/local 'include/*'
       rm -f $PROTOC_ZIP
-    displayName: install protoc for docgen
+    displayName: Install protoc for docgen
 
   - script: go install github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc@latest
-    displayName: fetch protoc static html doc generator
+    displayName: Fetch protoc static html doc generator
 
   - script: go install github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc@latest
-    displayName: install protoc static html doc generator
+    displayName: Install protoc static html doc generator
 
   - script: python3 ./zdevelop/make_scripts/proto_docs.py
     displayName: Generate gRPC API docs
 
   # List files in docs directory for debugging
   - script: ls ./zdocs/source/_static
-    displayName: list docs files
+    displayName: List docs files

@@ -1,22 +1,17 @@
 steps:
 
-  # Install clippy and Misspell.
+  # Install Clippy, rustfmt and Misspell.
   - script: |
       rustup component add clippy
+      rustup component add rustfmt
       go install github.com/client9/misspell/cmd/misspell@latest
-    displayName: Install Lint tools
+    displayName: Install lint tools
 
-  # Lint rust using clippy.
   - script: cargo clippy
-    displayName: 'clippy'
+    displayName: Clippy
 
-  # Install rustfmt
-  - script: rustup component add rustfmt
-    displayName: Install Rustfmt
-
-  # Lint rust using rustfmt
   - script: rustfmt ./src/*.rs --check
-    displayName: rustfmt check
+    displayName: Rustfmt check
 
   - script: find . -type f | grep -e \.rs | grep -v /target | xargs misspell -error
-    displayName: misspell
+    displayName: Misspell

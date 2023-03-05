@@ -6,7 +6,7 @@ steps:
   - script: |
       source "$HOME/.asdf/asdf.sh"
       mix format --check-formatted
-    displayName: mix format check
+    displayName: Check formatted
 
   - script: | 
       source "$HOME/.asdf/asdf.sh"

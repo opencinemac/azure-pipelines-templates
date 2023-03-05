@@ -17,15 +17,15 @@ steps:
 - script: |
     echo '##vso[task.prependpath]$(GOBIN)'
     echo '##vso[task.prependpath]$(GOROOT)/bin'
-  displayName: 'Register GOBIN'
+  displayName: Register GOBIN
   condition: and(succeeded(), eq(variables['Agent.OS'], 'Linux'))
 
 - script: go version
-  displayName: 'Print go version'
+  displayName: Print Go version
 
 - script: go env
-  displayName: 'Print go env'
+  displayName: Print Go env
 
 - ${{if eq(parameters.language, 'GO')}}:
   - script: go get -v -t -d ./...
-    displayName: 'Go get dependencies'
+    displayName: Go get dependencies

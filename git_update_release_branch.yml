@@ -10,7 +10,7 @@ steps:
     git checkout -b tempBuildBranch
     git add -A .
     git commit -am "release build for $(RELEASE_VERSION)"
-  displayName: 'Commit changes to temp branch & add build files.'
+  displayName: Commit changes to temp branch & add build files
   condition: succeeded()
 
 # Merge into master, resolving conflicts by favoring our temp branch.

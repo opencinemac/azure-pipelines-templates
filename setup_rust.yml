@@ -6,4 +6,4 @@ steps:
     displayName: Install Rust
 
   - script: rustup update
-    displayName: Update rust
+    displayName: Update Rust

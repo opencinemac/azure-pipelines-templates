@@ -6,14 +6,14 @@ steps:
       mkdir -p ./zdevelop/tests/_reports
       mkdir -p ./reports
       mix test --cover --warnings-as-errors
-    displayName: Run Tests With Coverage
+    displayName: Run tests
 
   - script: |
       find ./_build/test -type f  -name "test-junit-report.xml" -exec cp '{}' "./zdevelop/tests/_reports/tests_junit.xml" \;
       cp "./zdevelop/tests/_reports/tests_junit.xml" "./reports"
-    displayName: Copy JUnit Report
+    displayName: Copy JUnit report
 
   - script: |
       mv "coverage.xml" "./zdevelop/tests/_reports/coverage.xml"
       cp "./zdevelop/tests/_reports/coverage.xml" "./reports/coverage.xml"
-    displayName: Copy Coverage Report
+    displayName: Copy coverage report

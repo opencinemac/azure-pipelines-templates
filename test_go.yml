@@ -10,7 +10,7 @@ steps:
       mkdir -p ./zdevelop/tests
       mkdir -p ./zdevelop/tests/_reports
       python3 ./zdevelop/make_scripts/go_make_test.py
-    displayName: Run Tests
+    displayName: Run tests
 
   - script: |
       mkdir -p ./reports

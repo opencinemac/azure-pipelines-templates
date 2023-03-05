@@ -18,9 +18,9 @@ steps:
 # since we are building it now.
 - script: |
     echo > "./docs/.nojekyll"
-  displayName: 'Create .nojekyll file'
+  displayName: Create .nojekyll file
   condition: succeeded()
 
 # List files in docs directory for debugging
 - script: ls ./zdocs/source/_static
-  displayName: list docs files
+  displayName: List docs files

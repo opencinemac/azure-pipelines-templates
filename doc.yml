@@ -27,7 +27,7 @@ steps:
 
   # Build Documentation With Sphinx
   - script: python setup.py build_sphinx -E
-    displayName: 'Build docs'
+    displayName: Build docs
     condition: succeeded()
 
   # Set up docs for github pages publishing.

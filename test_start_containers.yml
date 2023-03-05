@@ -18,23 +18,23 @@ steps:
 # MONGO DB
 - ${{ if parameters.testMongo }}:
   - script: docker pull 'mongo:4.2'
-    displayName: 'downloading mongodb docker'
+    displayName: Downloading MongoDB Docker image
 
   - script: docker run -d --name mongotest -p 127.0.0.1:57017:27017/tcp mongo
-    displayName: 'start test mongo server'
+    displayName: Start Mongo
 
 # RABBIT MQ
 - ${{ if parameters.testRabbit }}:
   - script: docker pull 'rabbitmq:3.8-management'
-    displayName: 'downloading rabbitMQ docker'
+    displayName: Downloading RabbitMQ docker image
 
   - script: docker run -d --name rabbittest -p 127.0.0.1:57018:5672/tcp rabbitmq:3.8-management
-    displayName: 'start test rabbitMQ server'
+    displayName: Start RabbitMQ
 
 # REDIS
 - ${{ if parameters.testRedis }}:
   - script: docker pull redis
-    displayName: 'downloading redis docker'
+    displayName: Downloading Redis Docker image
 
   - script: docker run -d --name redis-test -p 127.0.0.1:6359:6379/tcp redis
-    displayName: 'start test redis server'
+    displayName: Start Redis

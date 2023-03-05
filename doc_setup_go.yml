@@ -13,8 +13,8 @@ steps:
     - script: |
         go install github.com/illuscio-dev/docmodule-go@latest
         go install golang.org/x/tools/cmd/godoc@latest
-      displayName: 'Go get doc tools'
+      displayName: Go get doc tools
       workingDirectory: $(Agent.BuildDirectory)
 
     - script: docmodule-go
-      displayName: 'Generate static API docs'
+      displayName: Generate static API docs

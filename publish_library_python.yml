@@ -10,13 +10,13 @@ parameters:
 steps:
   # Release the package on our pypi
   - script: python3 setup.py sdist bdist_wheel
-    displayName: 'Build package'
+    displayName: Build package
 
   # PUBLISH TO AZURE PRIVATE PYPI ###########
   - ${{ if ne(parameters.pypiAzureArtifactFeed, '-') }}:
     # Set up twine
     - task: TwineAuthenticate@1
-      displayName: 'Authenticate Twine'
+      displayName: Authenticate Twine
       inputs:
         # In this case, name of the feed is 'myTestFeed'
         artifactFeed: ${{ parameters.pypiAzureArtifactFeed }}
@@ -26,7 +26,7 @@ steps:
         -r ${{ parameters.pypiAzureArtifactFeed }} \
         --config-file $(PYPIRC_PATH) \
         dist/*
-      displayName: 'Upload package to azure pypi'
+      displayName: Upload package to azure pypi
 
   # Publish to public pypi
   - ${{ if parameters.publishToPypiOrg }}:
@@ -36,4 +36,4 @@ steps:
         TWINE_USERNAME: $(PYPIORG_USER)
         TWINE_PASSWORD: $(PYPIORG_PASSWORD)
         TWINE_NON_INTERACTIVE: 1
-      displayName: 'Upload package to pypi.org'
+      displayName: Upload package to pypi.org

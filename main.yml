@@ -121,7 +121,7 @@ jobs:
 
       # Get Repo Name.
       - script: python3 $(BUILD_SCRIPTS_DIR)/get_repo_name.py
-        displayName: 'Get repo name'
+        displayName: Get repo name
 
       # Run lint.
       - template: lint.yml
@@ -141,18 +141,18 @@ jobs:
       # candidates for release.
       - ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/dev') }}:
         - script: pip install packaging toml
-          displayName: install version script dependencies
+          displayName: Install version script dependencies
 
         # Get the release version. We need toml for rust releases
         - script: |
             python3 $(BUILD_SCRIPTS_DIR)/get_release_version.py
-          displayName: 'get release version'
+          displayName: Get release version
           env:
             PublishLanguage: ${{ parameters.language }}
 
         - script: |
             echo 'Version: $(RELEASE_VERSION)'
-          displayName: 'print version'
+          displayName: Print version
 
         # If we are in a release build and want to publish docs, do it.
         - ${{ if parameters.publishDocs }}:
