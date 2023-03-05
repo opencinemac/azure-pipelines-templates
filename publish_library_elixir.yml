@@ -10,6 +10,6 @@ steps:
       - script: | 
           source "$HOME/.asdf/asdf.sh"
           mix hex.publish --yes
-        displayName: Publish To Hex
+        displayName: Publish to Hex
         env:
           HEX_API_KEY: $(HEX_API_KEY)

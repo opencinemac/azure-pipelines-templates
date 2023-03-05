@@ -2,10 +2,10 @@ steps:
 
   - script: |
       git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.2
-      . "$HOME/.asdf/asdf.sh"
+      source "$HOME/.asdf/asdf.sh"
       asdf plugin add erlang
       asdf plugin add elixir
-    displayName: Install asdf
+    displayName: Install asdf & plugins
 
   - script: | 
       source "$HOME/.asdf/asdf.sh"
@@ -22,4 +22,4 @@ steps:
       source "$HOME/.asdf/asdf.sh"
       mix deps.get
       mix local.rebar --force
-    displayName: Install Dependencies
+    displayName: Install dependencies
