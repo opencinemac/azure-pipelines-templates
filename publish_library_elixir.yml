@@ -7,7 +7,9 @@ parameters:
 steps:
 
   - ${{ if parameters.publishToHexPM }}:
-      - script: mix hex.publish --yes
+      - script: | 
+          source "$HOME/.asdf/asdf.sh"
+          mix hex.publish --yes
         displayName: Publish To Hex
         env:
           HEX_API_KEY: $(HEX_API_KEY)

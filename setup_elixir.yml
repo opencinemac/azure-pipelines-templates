@@ -2,20 +2,24 @@ steps:
 
   - script: |
       git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.2
-      echo '. \"$HOME/.asdf/asdf.sh\"' >> ~/.bashrc
       . "$HOME/.asdf/asdf.sh"
       asdf plugin add erlang
       asdf plugin add elixir
     displayName: Install asdf
 
-  - script: asdf install
+  - script: | 
+      source "$HOME/.asdf/asdf.sh"
+      asdf install
     displayName: Install Erlang & Elixir
 
-  - script: mix local.hex --force
+  - script: | 
+      source "$HOME/.asdf/asdf.sh"
+      mix local.hex --force
     displayName: Install Hex
 
   # rebar is used for testing
   - script: |
+      source "$HOME/.asdf/asdf.sh"
       mix deps.get
       mix local.rebar --force
     displayName: Install Dependencies

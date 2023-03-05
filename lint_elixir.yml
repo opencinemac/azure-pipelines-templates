@@ -3,13 +3,19 @@ steps:
       go install github.com/client9/misspell/cmd/misspell@latest
     displayName: Install Lint tools
 
-  - script: mix format --check-formatted
+  - script: |
+      source "$HOME/.asdf/asdf.sh"
+      mix format --check-formatted
     displayName: mix format check
 
-  - script: mix credo
+  - script: | 
+      source "$HOME/.asdf/asdf.sh"
+      mix credo
     displayName: Credo
 
-  - script: mix dialyzer
+  - script: | 
+      source "$HOME/.asdf/asdf.sh"
+      mix dialyzer
     displayName: Static Type Analysis
 
   - script: find . -type f | grep -e "\.ex$" -e "\.exs$" | grep -v zdevelop/ | grep -v _build | grep -v deps | xargs misspell -error

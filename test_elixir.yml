@@ -1,6 +1,7 @@
 steps:
 
   - script: |
+      source "$HOME/.asdf/asdf.sh"
       mkdir -p ./zdevelop/tests
       mkdir -p ./zdevelop/tests/_reports
       mkdir -p ./reports
