@@ -10,7 +10,7 @@ steps:
 
   - script: | 
       source "$HOME/.asdf/asdf.sh"
-      mix credo
+      mix credo --strict
     displayName: Credo
 
   - script: | 
