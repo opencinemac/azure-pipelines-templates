@@ -7,7 +7,7 @@ steps:
       go install github.com/client9/misspell/cmd/misspell@latest
     displayName: Install lint tools
 
-  - script: cargo clippy
+  - script: cargo clippy -- --deny warnings
     displayName: Clippy
 
   - script: rustfmt ./src/*.rs --check
