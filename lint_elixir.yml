@@ -5,7 +5,7 @@ steps:
 
   - script: |
       source "$HOME/.asdf/asdf.sh"
-      mix style --check-formatted
+      mix format --check-formatted
     displayName: Check formatted
 
   - script: | 
