@@ -47,5 +47,5 @@ steps:
   - script: docker pull postgres
     displayName: Downloading Postgres Docker image
 
-  - script: docker run -d --name postgres-test -p 127.0.0.1:5432:5432/tcp postgres
+  - script: docker run -d -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres --name postgres-test -p 127.0.0.1:5432:5432/tcp postgres
     displayName: Start Postgres
