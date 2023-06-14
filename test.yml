@@ -36,7 +36,7 @@ steps:
       testMongo: ${{parameters.testMongo}}
       testRabbit: ${{parameters.testRabbit}}
       testRedis: ${{parameters.testRedis}}
-      testRedis: ${{parameters.testPostgres}}
+      testPostgres: ${{parameters.testPostgres}}
 
   - ${{ if eq( parameters.language, 'GO') }}:
     - template: test_go.yml
