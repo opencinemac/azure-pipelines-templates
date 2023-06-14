@@ -49,6 +49,11 @@ parameters:
     type: boolean
     default: false
 
+  # Whether to start a Postgres test container.
+  - name: testPostgres
+    type: boolean
+    default: false
+
   # Whether to build and publish docs.
   - name: publishDocs
     type: boolean
@@ -136,6 +141,7 @@ jobs:
             testMongo: ${{ parameters.testMongo }}
             testRabbit: ${{ parameters.testRabbit }}
             testRedis: ${{ parameters.testRedis }}
+            testPostgres: ${{ parameters.testPostgres }}
 
       # Building docs and publishing only need be done on dev branch builds, which are
       # candidates for release.

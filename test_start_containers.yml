@@ -7,6 +7,9 @@ parameters:
 
   - name: testRedis
     type: boolean
+    
+  - name: testPostgres
+    type: boolean
 
 # If we need to run our tests against mongodb, rabbitmq, etc, what better way than to
 # spin up an Actual service? This isn't technically kosher for unit tests, but for
