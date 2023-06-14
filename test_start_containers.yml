@@ -38,3 +38,11 @@ steps:
 
   - script: docker run -d --name redis-test -p 127.0.0.1:6359:6379/tcp redis
     displayName: Start Redis
+
+# POSTGRES
+- ${{ if parameters.testPostgres }}:
+  - script: docker pull postgres
+    displayName: Downloading Postgres Docker image
+
+  - script: docker run -d --name postgres-test -p 127.0.0.1:5432:5432/tcp postgres
+    displayName: Start Postgres

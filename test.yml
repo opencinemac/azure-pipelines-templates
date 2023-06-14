@@ -24,6 +24,11 @@ parameters:
     type: boolean
     default: false
 
+  # Whether to start a Postgres test container.
+  - name: testPostgres
+    type: boolean
+    default: false
+
 steps:
 
   - template: test_start_containers.yml
@@ -31,6 +36,7 @@ steps:
       testMongo: ${{parameters.testMongo}}
       testRabbit: ${{parameters.testRabbit}}
       testRedis: ${{parameters.testRedis}}
+      testRedis: ${{parameters.testPostgres}}
 
   - ${{ if eq( parameters.language, 'GO') }}:
     - template: test_go.yml
