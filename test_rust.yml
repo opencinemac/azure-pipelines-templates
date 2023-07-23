@@ -1,6 +1,8 @@
 steps:
 
-  - script: cargo install cargo-tarpaulin
+  - script: |
+      cargo install cargo-tarpaulin
+      cargo update -p proc-macro2
     displayName: Install tarpaulin
 
   - script: |
